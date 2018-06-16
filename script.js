@@ -41,7 +41,7 @@ hardBtn.addEventListener("click",function(){
 
 
 resetButton.addEventListener("click",function(){
-    colors = generateRandomColors(mode);
+    colors = generateRandomColors(mode  );
     pickedColor = pickColor();
     colorDisplay.textContent = pickedColor;
     for(var i = 0; i < squares.length; i++){
