@@ -5,11 +5,43 @@ var colorDisplay = document.getElementById("colorDisplay");
 var message = document.getElementById("message");
 var h1 = document.querySelector("h1")
 var resetButton = document.querySelector("#reset")
-var easyButton = document.querySelector("#easyBtn")
-var hardButton = document.querySelector("#hardBtn")
+var easyBtn = document.querySelector("#easyBtn")
+var hardBtn = document.querySelector("#hardBtn")
+var mode = 6;
+
+easyBtn.addEventListener("click",function(){
+    easyBtn.classList.add("selected")
+    hardBtn.classList.remove("selected")
+    mode = 3;
+    colors = generateRandomColors(mode);
+    pickedColor = pickColor();
+    colorDisplay.textContent = pickedColor;
+    for(var i = 0; i < squares.length; i++){
+        if(colors[i]){
+            squares[i].style.background = colors[i];
+        }
+        else{
+            squares[i].style.display = "none";
+        }
+    }
+})
+
+hardBtn.addEventListener("click",function(){
+    hardBtn.classList.add("selected")
+    easyBtn.classList.remove("selected")
+    mode = 6;
+    colors = generateRandomColors(mode);
+    pickedColor = pickColor();
+    colorDisplay.textContent = pickedColor;
+    for(var i = 0; i < squares.length; i++){
+        squares[i].style.background = colors[i];
+        squares[i].style.display = "block";
+    }
+})
+
 
 resetButton.addEventListener("click",function(){
-    colors = generateRandomColors(6);
+    colors = generateRandomColors(mode);
     pickedColor = pickColor();
     colorDisplay.textContent = pickedColor;
     for(var i = 0; i < squares.length; i++){
@@ -70,5 +102,4 @@ function randomColor(){
     var green = Math.floor(Math.random() * 256)
     var blue = Math.floor(Math.random() * 256)
     return "rgb(" + red + ", " + green + ", " + blue + ")";
-    
 }
